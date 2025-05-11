@@ -6,7 +6,6 @@ public class Contato {
 
     private int id;
 
-
     @SerializedName("name")
     private String nome;
     @SerializedName("phone")

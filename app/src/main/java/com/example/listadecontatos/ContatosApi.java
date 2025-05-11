@@ -23,7 +23,7 @@ public interface ContatosApi {
     @PUT("/contacts/{id}")
     Call<Void> editarContato(@Path("id") int id, @Body Contato contato);
 
-    @DELETE("/cotacts/{id}")
+    @DELETE("/contacts/{id}")
     Call<Void> deletarContato(@Path("id") int id);
 
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvNomeItem"
+        android:layout_width="387dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Nome"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTelefoneItem"
+        android:layout_width="386dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Número de Telefone"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNomeItem" />
+
+    <ImageButton
+        android:id="@+id/ibtnLigar"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="112dp"
+        android:backgroundTint="#FFFFFF"
+        android:foregroundTintMode="add"
+        android:tint="#5400B4"
+        app:layout_constraintEnd_toEndOf="@+id/tvTelefoneItem"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelefoneItem"
+        app:srcCompat="@android:drawable/stat_sys_phone_call" />
+
+    <ImageButton
+        android:id="@+id/ibtnEditar"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:backgroundTint="#FFFFFF"
+        android:tint="#5400B4"
+        app:layout_constraintStart_toEndOf="@+id/ibtnLigar"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelefoneItem"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/ibtnFavoritar"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelefoneItem"
+        app:srcCompat="@android:drawable/btn_star_big_off" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:backgroundTint="#FFFFFF"
+        android:tint="#5400B4"
+        app:layout_constraintStart_toEndOf="@+id/ibtnEditar"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelefoneItem"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

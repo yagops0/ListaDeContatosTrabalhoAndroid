@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/todos_contatos"
+          android:title="Todos os contatos"/>
+    <item android:id="@+id/favoritos_contatos"
+          android:title="Favoritos"/>
+</menu>
