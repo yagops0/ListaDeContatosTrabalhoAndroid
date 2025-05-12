@@ -17,6 +17,9 @@ public interface ContatosApi {
     @GET("/contacts")
     Call<List<Contato>> getContacts();
 
+    @GET("/contacts?favorite=true")
+    Call<List<Contato>> getFavoriteContacts();
+
     @POST("/contacts")
     Call<Contato> criarContato(@Body Contato contato);
 

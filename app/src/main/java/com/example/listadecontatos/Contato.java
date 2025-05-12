@@ -2,7 +2,9 @@ package com.example.listadecontatos;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Contato {
+import java.io.Serializable;
+
+public class Contato implements Serializable {
 
     private int id;
     @SerializedName("name")

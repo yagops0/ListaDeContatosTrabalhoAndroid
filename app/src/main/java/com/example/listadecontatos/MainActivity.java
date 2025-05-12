@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -65,11 +66,51 @@ public class MainActivity extends AppCompatActivity implements ContatoAdapter.Co
         return true;
     }
 
-    // Método para atualizar a lista de contatos ao retornar à Activity
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        if (item.getItemId() == R.id.todos_contatos){
+            buscarContatos();
+            return true;
+        } else if (item.getItemId() == R.id.favoritos_contatos) {
+            buscarContatosFavoritos();
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
-        buscarContatos(); // Atualiza a lista sempre que a Activity voltar a ser exibida
+        buscarContatos();
+    }
+
+    private void buscarContatosFavoritos(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constantes.API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ContatosApi contatosApi = retrofit.create(ContatosApi.class);
+
+        Call<List<Contato>> getContatosServer = contatosApi.getFavoriteContacts();
+        getContatosServer.enqueue(new Callback<List<Contato>>() {
+            @Override
+            public void onResponse(Call<List<Contato>> call, Response<List<Contato>> response) {
+                if (response.isSuccessful()) {
+                    List<Contato> contatos = response.body();
+                    contatoAdapter = new ContatoAdapter(MainActivity.this, contatos);
+                    lvContatos.setAdapter(contatoAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Contato>> call, Throwable throwable) {
+                Toast.makeText(MainActivity.this, "Erro ao buscar contatos", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void buscarContatos(){
@@ -112,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements ContatoAdapter.Co
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Contato excluído com sucesso!", Toast.LENGTH_LONG).show();
-                    buscarContatos(); // Atualiza a lista após exclusão bem-sucedida
+                    buscarContatos();
                 } else {
                     Toast.makeText(MainActivity.this, "Houve um erro ao excluir o contato", Toast.LENGTH_LONG).show();
                 }
@@ -125,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements ContatoAdapter.Co
         });
     }
 
-    // Implementação do método da interface ContatoAdapterListener
     @Override
     public void onDeleteClick(int contatoId) {
         excluirContato(contatoId);
